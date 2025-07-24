@@ -55,12 +55,12 @@ data "aws_iam_policy_document" "assume_role_with_oidc" {
 resource "aws_iam_role" "gitlab_provisioner" {
   count = var.create_role ? 1 : 0
 
-  name                 = var.role_name
-  description          = var.description
+  name                  = var.role_name
+  description           = var.description
   force_detach_policies = var.force_detach_policies
-  path                 = var.path
-  max_session_duration = var.max_session_duration
-  assume_role_policy   = data.aws_iam_policy_document.assume_role_with_oidc[0].json
+  path                  = var.path
+  max_session_duration  = var.max_session_duration
+  assume_role_policy    = data.aws_iam_policy_document.assume_role_with_oidc[0].json
   tags = merge({
     Role = var.role_name
   }, var.tags)
